@@ -28,12 +28,12 @@ public class Main {
       System.exit(1);
     }
 
-    // TODO: Uncomment the code below to pass the first stage
-    // 
-    // if (fileContents.length() > 0) {
-    //   throw new RuntimeException("Scanner not implemented");
-    // } else {
-    //   System.out.println("EOF  null"); // Placeholder, replace this line when implementing the scanner
-    // }
+     //TODO: Uncomment the code below to pass the first stage
+
+     if (fileContents.length() > 0) {
+       throw new RuntimeException("Scanner not implemented");
+     } else {
+       System.out.println("EOF  null"); // Placeholder, replace this line when implementing the scanner
+     }
   }
 }
