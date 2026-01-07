@@ -36,6 +36,10 @@ public class Main {
            System.out.println("LEFT_PAREN ( null");
          else if(c==')')
            System.out.println("RIGHT_PAREN ) null");
+         else if(c=='{')
+           System.out.println("LEFT_BRACE { null");
+         else if(c=='}')
+           System.out.println("RIGHT_BRACE } null");
        }
        System.out.println("EOF  null");
      } else {
