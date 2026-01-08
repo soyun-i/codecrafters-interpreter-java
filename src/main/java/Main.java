@@ -1,8 +1,25 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
+  private static final Map<Character, String> TOKEN = Map.ofEntries(
+          Map.entry('(', "LEFT_PAREN"),
+          Map.entry(')', "RIGHT_PAREN"),
+          Map.entry('{', "LEFT_BRACE"),
+          Map.entry('}', "RIGHT_BRACE"),
+          Map.entry(',', "COMMA"),
+          Map.entry('.', "DOT"),
+          Map.entry('-', "MINUS"),
+          Map.entry('+', "PLUS"),
+          Map.entry(';', "SEMICOLON"),
+          Map.entry('/', "SLASH"),
+          Map.entry('*', "STAR")
+  );
+
   public static void main(String[] args) {
     // You can use print statements as follows for debugging, they'll be visible when running tests.
     System.err.println("Logs from your program will appear here!");
@@ -31,29 +48,30 @@ public class Main {
      //TODO: Uncomment the code below to pass the first stage
 
      if (fileContents.length() > 0) {
+       int line = 1;
+       List<String> errors = new ArrayList<>();
+       List<String> tokens = new ArrayList<>();
+
        for(char c: fileContents.toCharArray()) {
-         if(c == '(')
-           System.out.println("LEFT_PAREN ( null");
-         else if(c == ')')
-           System.out.println("RIGHT_PAREN ) null");
-         else if(c == '{')
-           System.out.println("LEFT_BRACE { null");
-         else if(c == '}')
-           System.out.println("RIGHT_BRACE } null");
-         else if(c == ',')
-           System.out.println("COMMA , null");
-         else if(c == '.')
-           System.out.println("DOT . null");
-         else if(c == '-')
-           System.out.println("MINUS - null");
-         else if(c == '+')
-           System.out.println("PLUS + null");
-         else if(c == ';')
-           System.out.println("SEMICOLON ; null");
-         else if(c == '/')
-           System.out.println("SLASH / null");
-         else if(c == '*')
-           System.out.println("STAR * null");
+         if(c == '\n'){
+           line++;
+           continue;
+         }
+         String tokenType = TOKEN.get(c);
+         if(tokenType != null) {
+           tokens.add(tokenType + " " + c + " null" );
+           continue;
+         }
+
+         if(!Character.isWhitespace(c)) {
+           errors.add("[line " + line + "] Error: Unexpected character: " + c);
+         }
+       }
+       for(String error: errors) {
+         System.out.println(error);
+       }
+       for(String token: tokens) {
+         System.out.println(token);
        }
        System.out.println("EOF  null");
      } else {
