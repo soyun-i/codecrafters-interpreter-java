@@ -68,12 +68,18 @@ public class Main {
          }
        }
        for(String error: errors) {
-         System.out.println(error);
+         System.err.println(error);
        }
        for(String token: tokens) {
          System.out.println(token);
        }
        System.out.println("EOF  null");
+
+       if(!errors.isEmpty())
+         System.exit(65);
+       else
+         System.exit(0);
+
      } else {
        System.out.println("EOF  null"); // Placeholder, replace this line when implementing the scanner
      }
