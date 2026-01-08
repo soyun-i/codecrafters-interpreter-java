@@ -32,14 +32,28 @@ public class Main {
 
      if (fileContents.length() > 0) {
        for(char c: fileContents.toCharArray()) {
-         if(c=='(')
+         if(c == '(')
            System.out.println("LEFT_PAREN ( null");
-         else if(c==')')
+         else if(c == ')')
            System.out.println("RIGHT_PAREN ) null");
-         else if(c=='{')
+         else if(c == '{')
            System.out.println("LEFT_BRACE { null");
-         else if(c=='}')
+         else if(c == '}')
            System.out.println("RIGHT_BRACE } null");
+         else if(c == ',')
+           System.out.println("COMMA , null");
+         else if(c == '.')
+           System.out.println("DOT . null");
+         else if(c == '-')
+           System.out.println("MINUS - null");
+         else if(c == '+')
+           System.out.println("PLUS + null");
+         else if(c == ';')
+           System.out.println("SEMICOLON ; null");
+         else if(c == '/')
+           System.out.println("SLASH / null");
+         else if(c == '*')
+           System.out.println("STAR * null");
        }
        System.out.println("EOF  null");
      } else {
