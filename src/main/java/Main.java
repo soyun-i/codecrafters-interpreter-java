@@ -100,6 +100,12 @@ public class Main {
            continue;
          }
 
+         if(c == '/'){
+           if(i + 1 < fileContents.length() && fileContents.charAt(i + 1) == '/') {
+             break;
+           }
+         }
+
          String tokenType = TOKEN.get(c);
          if (tokenType != null) {
            tokens.add(tokenType + " " + c + " null");
