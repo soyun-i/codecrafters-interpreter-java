@@ -140,6 +140,31 @@ public class Main {
            continue;
          }
 
+         if(Character.isDigit(c)) {
+           int start = i;
+           boolean hasDot = false;
+
+           while(i<fileContents.length()) {
+             char ch = fileContents.charAt(i);
+
+             if(Character.isDigit(ch)) {
+               i++;
+               continue;
+             }
+
+             if(ch == '.' && !hasDot) {
+               hasDot = true;
+               i++;
+               continue;
+             }
+             break;
+           }
+           tokens.add("NUMBER " + fileContents.substring(start, i) + " " + Double.parseDouble(fileContents.substring(start, i)));
+           i--;
+           continue;
+         }
+
+
          String tokenType = TOKEN.get(c);
          if (tokenType != null) {
            tokens.add(tokenType + " " + c + " null");
