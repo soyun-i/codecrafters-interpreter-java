@@ -110,6 +110,36 @@ public class Main {
            }
          }
 
+         if( c == '"'){
+           StringBuilder builder = new StringBuilder();
+           int startLine = line;
+           i++;
+
+           boolean isString = false;
+
+           while(i<fileContents.length()) {
+             char ch = fileContents.charAt(i);
+
+             if(ch == '"'){
+               isString = true;
+               break;
+             }
+
+             if(ch == '\n')
+               line++;
+
+             builder.append(ch);
+             i++;
+           }
+
+           if(!isString) {
+             errors.add("[line " + startLine + "] Error: Unterminated string.");
+             break;
+           }
+           tokens.add("STRING " + "\"" + builder.toString() + "\" " + builder.toString());
+           continue;
+         }
+
          String tokenType = TOKEN.get(c);
          if (tokenType != null) {
            tokens.add(tokenType + " " + c + " null");
