@@ -52,18 +52,31 @@ public class Main {
        List<String> errors = new ArrayList<>();
        List<String> tokens = new ArrayList<>();
 
-       for(char c: fileContents.toCharArray()) {
-         if(c == '\n'){
+       for (int i = 0; i < fileContents.length(); i++) {
+         char c = fileContents.charAt(i);
+
+         if (c == '\n') {
            line++;
            continue;
          }
-         String tokenType = TOKEN.get(c);
-         if(tokenType != null) {
-           tokens.add(tokenType + " " + c + " null" );
+
+         if (c == '=') {
+           if (i + 1 < fileContents.length() && fileContents.charAt(i + 1) == '=') {
+             tokens.add("EQUAL_EQUAL == null");
+             i++;
+           } else {
+             tokens.add("EQUAL = null");
+           }
            continue;
          }
 
-         if(!Character.isWhitespace(c)) {
+         String tokenType = TOKEN.get(c);
+         if (tokenType != null) {
+           tokens.add(tokenType + " " + c + " null");
+           continue;
+         }
+
+         if (!Character.isWhitespace(c)) {
            errors.add("[line " + line + "] Error: Unexpected character: " + c);
          }
        }
