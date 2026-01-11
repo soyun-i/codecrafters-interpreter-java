@@ -70,6 +70,16 @@ public class Main {
            continue;
          }
 
+         if (c == '!'){
+           if(i + 1 < fileContents.length() && fileContents.charAt(i + 1) == '=') {
+             tokens.add("BANG_EQUAL != null");
+             i++;
+           } else {
+             tokens.add("BANG ! null");
+           }
+           continue;
+         }
+
          String tokenType = TOKEN.get(c);
          if (tokenType != null) {
            tokens.add(tokenType + " " + c + " null");
