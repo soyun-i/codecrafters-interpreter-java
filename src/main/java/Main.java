@@ -20,6 +20,25 @@ public class Main {
           Map.entry('*', "STAR")
   );
 
+  private static final Map<String, String> KEYWORDS = Map.ofEntries(
+          Map.entry("and", "AND"),
+          Map.entry("class", "CLASS"),
+          Map.entry("else", "ELSE"),
+          Map.entry("false", "FALSE"),
+          Map.entry("for", "FOR"),
+          Map.entry("fun", "FUN"),
+          Map.entry("if", "IF"),
+          Map.entry("nil", "NIL"),
+          Map.entry("or", "OR"),
+          Map.entry("print", "PRINT"),
+          Map.entry("return", "RETURN"),
+          Map.entry("super", "SUPER"),
+          Map.entry("this", "THIS"),
+          Map.entry("true", "TRUE"),
+          Map.entry("var", "VAR"),
+          Map.entry("while", "WHILE")
+  );
+
   public static void main(String[] args) {
     // You can use print statements as follows for debugging, they'll be visible when running tests.
     System.err.println("Logs from your program will appear here!");
@@ -180,7 +199,9 @@ public class Main {
              }
            }
 
-           tokens.add("IDENTIFIER " + fileContents.substring(start, i) + " null");
+           String keyword = fileContents.substring(start, i);
+           String type = KEYWORDS.getOrDefault(keyword, "IDENTIFIER");
+           tokens.add(type + " " + keyword + " null");
 
            i--;
            continue;
