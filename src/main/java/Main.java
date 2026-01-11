@@ -102,7 +102,11 @@ public class Main {
 
          if(c == '/'){
            if(i + 1 < fileContents.length() && fileContents.charAt(i + 1) == '/') {
-             break;
+             while( i < fileContents.length() && fileContents.charAt(i) != '\n') {
+               i++;
+             }
+             line++;
+             continue;
            }
          }
 
