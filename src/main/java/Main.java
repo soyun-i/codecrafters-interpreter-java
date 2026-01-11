@@ -80,6 +80,26 @@ public class Main {
            continue;
          }
 
+         if (c == '<'){
+           if(i + 1 < fileContents.length() && fileContents.charAt(i + 1) == '=') {
+             tokens.add("LESS_EQUAL <= null");
+             i++;
+           } else {
+             tokens.add("LESS < null");
+           }
+           continue;
+         }
+
+         if (c == '>'){
+           if(i + 1 < fileContents.length() && fileContents.charAt(i + 1) == '=') {
+             tokens.add("GREATER_EQUAL >= null");
+             i++;
+           } else {
+             tokens.add("GREATER > null");
+           }
+           continue;
+         }
+
          String tokenType = TOKEN.get(c);
          if (tokenType != null) {
            tokens.add(tokenType + " " + c + " null");
