@@ -110,6 +110,7 @@ public class Main {
            }
          }
 
+         //String 처리
          if( c == '"'){
            StringBuilder builder = new StringBuilder();
            int startLine = line;
@@ -140,6 +141,7 @@ public class Main {
            continue;
          }
 
+         // NUMBER 처리
          if(Character.isDigit(c)) {
            int start = i;
            boolean hasDot = false;
@@ -164,7 +166,28 @@ public class Main {
            continue;
          }
 
+         //Identifiers
+         if(Character.isLetter(c) || c == '_') {
+           int start = i;
 
+           while(i<fileContents.length()) {
+             char ch = fileContents.charAt(i);
+
+             if(Character.isLetterOrDigit(ch) || ch == '_') {
+               i++;
+             }else{
+               break;
+             }
+           }
+
+           tokens.add("IDENTIFIER " + fileContents.substring(start, i) + " null");
+
+           i--;
+           continue;
+         }
+
+
+         //TOKEN 문자
          String tokenType = TOKEN.get(c);
          if (tokenType != null) {
            tokens.add(tokenType + " " + c + " null");
